@@ -100,7 +100,19 @@ function hoursAheadToday(currentHour, hoursOfDay) {
  * @return {Number}
  */
 function hoursToStudy(currentHour, hoursOfDay, currentDay, daysOfWeek) {
-  return -1;
+  var classStartsAt = 11;
+  var classEndsAt = 17;
+  if (currentDay === "Saturday" && currentHour < classStartsAt) {
+    return classStartsAt - currentHour;
+  } else if (currentDay === "Saturday" && currentHour < classEndsAt) {
+    return "you're in class now!!!";
+  } else {
+    return (
+      numberOfDaysUntilNextClass(currentDay, daysOfWeek) * hoursOfDay.length -
+      hoursPassedToday(currentHour, hoursOfDay).length +
+      classStartsAt
+    );
+  }
 }
 
 /*
