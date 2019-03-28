@@ -48,7 +48,11 @@ function numberOfDaysUntilNextClass(currentDay, daysOfWeek) {
  * @return {Number}
  */
 function hoursUntilNextDinner(currentHour, hourOfDinner) {
-  return -1;
+  if (currentHour <= hourOfDinner) {
+    return hourOfDinner - currentHour;
+  } else {
+    return hourOfDinner + (24 - currentHour);
+  }
 }
 
 /**
@@ -79,8 +83,9 @@ function hoursPassedToday(currentHour, hoursOfDay) {
  * @param {Array<Number>} hoursOfDay The array will be: [0, 1, 2, 3, ..., 14, 15, 16, ..., 23] (0 = midnight)
  * @return {Array<Number>}
  */
+
 function hoursAheadToday(currentHour, hoursOfDay) {
-  return [];
+  return hoursOfDay.slice(currentHour + 1);
 }
 
 /**
