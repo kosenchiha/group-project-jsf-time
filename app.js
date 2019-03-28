@@ -22,7 +22,13 @@ YOU MAY EDIT THE LINES BELOW
  * @return {Number}
  */
 function numberOfDaysUntilNextClass(currentDay, daysOfWeek) {
-  return -1;
+  if (currentDay === "Saturday" && currentHour > 17) {
+    return daysOfWeek.length;
+  } else if (daysOfWeek.indexOf(currentDay) <= daysOfWeek.indexOf("Saturday")) {
+    return daysOfWeek.indexOf("Saturday") - daysOfWeek.indexOf(currentDay);
+  } else {
+    return daysOfWeek.length - 1;
+  }
 }
 
 /**
@@ -58,7 +64,7 @@ function hoursUntilNextDinner(currentHour, hourOfDinner) {
  * @return {Array<Number>}
  */
 function hoursPassedToday(currentHour, hoursOfDay) {
-  return [];
+  return hoursOfDay.slice(0, currentHour);
 }
 
 /**
